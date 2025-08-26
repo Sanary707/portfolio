@@ -282,7 +282,7 @@ export default function App() {
       intro: "I build intelligent, data-driven applications and interactive web experiences, from machine learning models to dynamic front-end designs.",
       email: "Salilt1920@gmail.com", 
       phone: "+91 7217543838", 
-      resumeUrl: "/Salil_Tiwari_Resume.pdf", 
+      resumeUrl: "/Salil's Resume.pdf", 
       linkedin: "https://www.linkedin.com/in/salil-tiwari-588a49275", // Updated
       github: "https://github.com/Sanary707", // Updated
       skillsRadial: [
