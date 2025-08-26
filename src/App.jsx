@@ -136,7 +136,7 @@ const ProjectCard = ({ title, desc, tech = [], img, status, link }) => {
         {link && link !== "#" && (
           <div className="project-card-overlay">
             <a href={link} target="_blank" rel="noopener noreferrer" className="button button-primary">
-              View on GitHub
+              View Project
             </a>
           </div>
         )}
