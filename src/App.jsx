@@ -305,7 +305,7 @@ export default function App() {
           tech: ["React.js", "JavaScript", "HTML", "CSS"], 
           img: "https://picsum.photos/seed/project2/600/400",
           status: "Completed",
-          link: "https://github.com/Sanary707" // Updated link
+          link: "https://salile-commerce-website.vercel.app/" // Updated link
         },
         {
           title: "Credit Card Fraud Detection", 
@@ -313,7 +313,7 @@ export default function App() {
           tech: ["Python", "Machine Learning", "Streamlit"], 
           img: "https://picsum.photos/seed/project3/600/400",
           status: "Completed",
-          link: "https://github.com/Sanary707/E-Commerce-Website.git " // Updated link
+          link: "https://github.com/Sanary707 " // Updated link
         },
         {
           title: "Multiple Disease Prediction", 
