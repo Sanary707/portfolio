@@ -1,8 +1,10 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import './App.css'; // Your main stylesheet
-import './index.css'; // Your global styles
+import WAVES from 'vanta/dist/vanta.waves.min';
+import * as THREE from 'three';
+import './App.css';
+import './index.css';
 
-// === Rishabh Tyagi — Portfolio without Tailwind ===
+// === Salil Tiwari — Portfolio ===
 
 // ===== Helper Components =====
 const Section = ({ id, children, className = '' }) => {
@@ -134,7 +136,7 @@ const ProjectCard = ({ title, desc, tech = [], img, status, link }) => {
         {link && link !== "#" && (
           <div className="project-card-overlay">
             <a href={link} target="_blank" rel="noopener noreferrer" className="button button-primary">
-              View Project
+              View on GitHub
             </a>
           </div>
         )}
@@ -243,58 +245,91 @@ const ContactSection = ({ data }) => {
 
 // ================== MAIN APP ==================
 export default function App() {
+  const [vantaEffect, setVantaEffect] = useState(null);
+  const vantaRef = useRef(null);
+
+  // VANTA.JS BACKGROUND EFFECT HOOK
+  useEffect(() => {
+    if (!vantaEffect) {
+      setVantaEffect(
+        WAVES({
+          el: vantaRef.current,
+          THREE: THREE,
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0,
+          color: 0x181818, // Changed color to match new dark theme
+          shininess: 35.00,
+          waveHeight: 18.00,
+          waveSpeed: 0.85,
+          zoom: 0.8,
+        })
+      );
+    }
+    // Cleanup function to destroy the effect on component unmount
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, [vantaEffect]);
+
   const data = useMemo(() => ({
-      name: "Rishabh Tyagi",
-      taglinePhrases: ["AI Enthusiast", "Problem Solver", "Future Innovator"],
-      intro: "I build smart applications using AI, ML, and automation to solve real-world problems.",
-      email: "tyagirishabh2004@gmail.com",
-      phone: "+91 8595861221",
-      
-      // THIS IS THE CORRECT PATH.
-      // It works as long as "Rishabh_Tyagi_Resume.pdf" is in the "public" folder.
-      // Do NOT use the full "D:\..." path here.
-      resumeUrl: "/Rishabh_Tyagi_Resume.pdf", 
-      
-      linkedin: "https://www.linkedin.com/in/rishabh-tyagi-380110310/",
-      github: "https://github.com/RishabhTyagi78",
+      name: "Salil Tiwari", 
+      taglinePhrases: ["Machine Learning Developer", "Full-Stack Enthusiast", "Creative Problem Solver"],
+      intro: "I build intelligent, data-driven applications and interactive web experiences, from machine learning models to dynamic front-end designs.",
+      email: "Salilt1920@gmail.com", 
+      phone: "+91 7217543838", 
+      resumeUrl: "/Salil_Tiwari_Resume.pdf", 
+      linkedin: "https://www.linkedin.com/in/salil-tiwari-588a49275", // Updated
+      github: "https://github.com/Sanary707", // Updated
       skillsRadial: [
-        { label: "Python", value: 90 },
-        { label: "TensorFlow", value: 70 },
-        { label: "Scikit-learn", value: 80 },
-        { label: "Pandas", value: 85 },
+        { label: "Python", value: 90 }, 
+        { label: "C++", value: 80 }, 
+        { label: "JavaScript", value: 75 }, 
+        { label: "MySQL", value: 70 }, 
       ],
       skillsBars: [
-        { label: "JavaScript", value: 75 },
-        { label: "React", value: 70 },
-        { label: "HTML & CSS", value: 85 },
-        { label: "MySQL", value: 65 },
-        { label: "Java", value: 60 },
-        { label: "C", value: 55 },
+        { label: "React.js", value: 80 }, 
+        { label: "HTML & CSS", value: 85 }, 
+        { label: "Streamlit", value: 75 }, 
+        { label: "C Language", value: 65 }, 
+        { label: "Bootstrap", value: 60 }, 
       ],
       projects: [
         {
-          title: "Chat with PDF",
-          desc: "AI chatbot for PDFs using FAISS + Google Gemini to retrieve semantically relevant answers from uploaded documents.",
-          tech: ["Python", "Streamlit", "FAISS", "Gemini"],
-          img: "https://picsum.photos/seed/project1/600/400",
-          status: "Completed",
-          link: "https://github.com/RishabhTyagi78"
-        },
-        {
-          title: "Two-Step Authentication",
-          desc: "Dual-auth using facial recognition (OpenCV) with Excel-based login verification and guided TTS flow.",
-          tech: ["Python", "OpenCV", "Excel"],
+          title: "E-Commerce Website", 
+          desc: "An interactive frontend web app using React.js to showcase things, featuring attractive UI and dynamic pricing.", 
+          tech: ["React.js", "JavaScript", "HTML", "CSS"], 
           img: "https://picsum.photos/seed/project2/600/400",
           status: "Completed",
-          link: "https://github.com/RishabhTyagi78"
+          link: "https://github.com/Sanary707" // Updated link
+        },
+        {
+          title: "Credit Card Fraud Detection", 
+          desc: "An intelligent Streamlit web app that leverages ML to identify potentially fraudulent credit card transactions in real-time.", 
+          tech: ["Python", "Machine Learning", "Streamlit"], 
+          img: "https://picsum.photos/seed/project3/600/400",
+          status: "Completed",
+          link: "https://github.com/Sanary707" // Updated link
+        },
+        {
+          title: "Multiple Disease Prediction", 
+          desc: "An interactive Streamlit web app in Python that predicts Diabetes, Parkinson's, or Heart Disease from medical parameters.", 
+          tech: ["Python", "Machine Learning", "Streamlit"], 
+          img: "https://picsum.photos/seed/project4/600/400",
+          status: "Completed",
+          link: "https://github.com/Sanary707" // Updated link
         },
       ],
       journey: [
-        { year: "2021", text: "Started coding with Python" },
-        { year: "2022", text: "Learned web development" },
-        { year: "2023", text: "Built first AI/ML projects" },
-        { year: "2024", text: "Hackathon & team projects" },
-        { year: "2025", text: "Advanced AI apps & certifications" },
+        { year: "2020", text: "Completed C.B.S.E. with 88.20%" }, 
+        { year: "2022", text: "Started B.TECH in Computer Science at Graphic Era Hill University" }, 
+        { year: "2023", text: "Began exploring Machine Learning with the 'Multiple Disease Prediction' project" }, 
+        { year: "2024", text: "Deepened ML skills with a 'Credit Card Fraud Detection' application" }, 
+        { year: "2025", text: "Expanded into web dev with a React.js site, explored automation, and achieved AWS Certification." }, 
       ],
     }), []);
 
@@ -316,12 +351,8 @@ export default function App() {
   }, []);
 
   return (
-    <div className="selection-bg">
-      <div className="background-container">
-        <div className="background-gradient" />
-        <div className="background-radial" />
-      </div>
-
+    // The ref is now attached to the main div, which acts as the Vanta container
+    <div ref={vantaRef} className="app-container selection-bg">
       <nav className="nav">
         <div className="nav-container">
           <a href="#hero" className="nav-brand text-gradient">{data.name}</a>
@@ -333,7 +364,7 @@ export default function App() {
             ))}
           </div>
           <button className="mobile-menu-button" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Toggle Menu">
-            <svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+            <svg stroke="currentColor" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7"></path></svg>
           </button>
         </div>
         {mobileMenuOpen && (
@@ -350,7 +381,7 @@ export default function App() {
       <main>
         <Section id="hero" className="hero-section">
           <div className="hero-content">
-            <Badge>AI Developer & Enthusiast</Badge>
+            <Badge>Machine Learning & Web Developer</Badge>
             <h1 className="hero-title">Hi, I'm <span className="text-gradient">{data.name.split(' ')[0]}</span></h1>
             <div className="hero-typewriter">
               <span className="text-gradient">{typed}</span>
@@ -367,7 +398,7 @@ export default function App() {
         <Section id="skills">
           <div className="section-header">
             <h2 className="section-title">Skills & Expertise</h2>
-            <p className="section-subtitle">A diverse skill set focused on AI, machine learning, and full-stack development.</p>
+            <p className="section-subtitle">A diverse skill set focused on machine learning, data science, and web development.</p>
           </div>
           <div className="skills-grid">
             <div className="skills-column">
@@ -388,7 +419,7 @@ export default function App() {
         <Section id="projects">
           <div className="section-header">
             <h2 className="section-title">Featured Projects</h2>
-            <p className="section-subtitle">A collection of my most impactful work in AI and software development.</p>
+            <p className="section-subtitle">A collection of my work in machine learning and software development.</p>
           </div>
           <div className="projects-grid">
             {data.projects.map(p => <ProjectCard key={p.title} {...p} />)}
@@ -397,8 +428,8 @@ export default function App() {
         
         <Section id="journey">
           <div className="section-header">
-            <h2 className="section-title">My Coding Journey</h2>
-            <p className="section-subtitle">The timeline of my development as a programmer and AI enthusiast.</p>
+            <h2 className="section-title">My Journey</h2>
+            <p className="section-subtitle">The timeline of my development as a programmer and ML enthusiast.</p>
           </div>
           <div className="timeline">
             {data.journey.map((j, i) => (
